@@ -1,0 +1,39 @@
+[project]
+name = "belgibayev-alikhan-test-task"
+version = "0.1.0"
+description = "РџСЂР°РєС‚РёС‡РµСЃРєРёРµ Р·Р°РґР°РЅРёСЏ: FastAPI, РІР°Р»РёРґР°С†РёСЏ, С‚СЂР°РЅР·Р°РєС†РёРё Рё С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115,<1",
+    "uvicorn>=0.30,<1",
+    "aiosqlite>=0.20,<1",
+    "pydantic[email]>=2.9,<3",
+    "pwdlib[argon2]>=0.2,<1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-asyncio>=0.24,<2", "httpx>=0.27,<1", "ruff>=0.9,<1"]
+ui = ["playwright>=1.49,<2"]
+
+[build-system]
+requires = ["setuptools>=75,<100"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+app = ["schema.sql", "static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+markers = ["ui: Chromium browser tests (run with --ui)"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
