@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Задачи — практический тест</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <p class="eyebrow">Бельгибаев Алихан · практический тест</p>
+      <h1>Список задач</h1>
+      <p>Создавайте задачи и отмечайте выполненное.</p>
+      <a href="/docs">Документация API ↗</a>
+    </header>
+    <div id="auth-panels" class="auth-grid">
+      <section class="card" aria-labelledby="login-title">
+        <h2 id="login-title">Вход</h2>
+        <form id="login-form" novalidate>
+          <label for="login-email">Email</label>
+          <input id="login-email" name="email" type="email" autocomplete="username" required>
+          <label for="login-password">Пароль</label>
+          <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+          <p id="login-message" class="message" role="status"></p>
+          <button type="submit">Войти</button>
+        </form>
+      </section>
+      <section class="card" aria-labelledby="register-title">
+        <h2 id="register-title">Регистрация</h2>
+        <form id="register-form" novalidate>
+          <label for="register-email">Email</label>
+          <input id="register-email" name="email" type="email" autocomplete="email" required
+                 aria-describedby="register-email-error">
+          <p id="register-email-error" class="field-error" aria-live="polite"></p>
+          <label for="register-birth">Дата рождения</label>
+          <input id="register-birth" name="birth_date" type="date" autocomplete="bday" required
+                 min="1900-01-01" aria-describedby="register-birth-error">
+          <p id="register-birth-error" class="field-error" aria-live="polite"></p>
+          <label for="register-password">Пароль</label>
+          <input id="register-password" name="password" type="password" autocomplete="new-password"
+                 minlength="10" maxlength="128" required aria-describedby="password-hint register-password-error">
+          <p id="password-hint" class="hint">От 10 до 128 символов.</p>
+          <p id="register-password-error" class="field-error" aria-live="polite"></p>
+          <p id="register-message" class="message" role="status"></p>
+          <button type="submit">Создать аккаунт</button>
+        </form>
+      </section>
+    </div>
+    <section id="workspace" class="card" aria-labelledby="workspace-title" hidden>
+      <div class="section-header">
+        <div><h2 id="workspace-title">Мои задачи</h2><p id="account-email" class="hint"></p></div>
+        <button id="logout" class="secondary" type="button">Выйти</button>
+      </div>
+      <form id="task-form">
+        <label for="task-title">Название задачи</label>
+        <div class="input-row">
+          <input id="task-title" name="title" required maxlength="200" placeholder="Например, проверить API">
+          <button type="submit">Добавить задачу</button>
+        </div>
+        <p id="task-message" class="message" role="status"></p>
+      </form>
+      <div class="toolbar">
+        <div><label for="status-filter">Статус задач</label>
+          <select id="status-filter">
+            <option value="">Все</option><option value="todo">Нужно сделать</option>
+            <option value="in_progress">В работе</option><option value="done">Готово</option>
+          </select>
+        </div>
+        <button id="refresh" class="secondary" type="button">Обновить</button>
+      </div>
+      <div id="task-results" aria-busy="false">
+        <p id="list-message" class="message" role="status"></p>
+        <div id="list-error" class="error-panel" role="alert" hidden>
+          <p id="list-error-text"></p><button id="retry" class="secondary" type="button">Повторить</button>
+        </div>
+        <ul id="tasks" class="task-list"></ul>
+        <button id="load-more" class="secondary" type="button" hidden>Загрузить ещё</button>
+      </div>
+    </section>
+    <dialog id="task-detail" aria-labelledby="detail-title">
+      <h2 id="detail-title">Подробности задачи</h2>
+      <p id="detail-content" role="status"></p>
+      <button id="close-detail" type="button">Закрыть</button>
+    </dialog>
+    <footer>Учебный проект · Python / FastAPI</footer>
+  </main>
+</body>
+</html>
